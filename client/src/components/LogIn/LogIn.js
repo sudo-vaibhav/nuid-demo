@@ -24,8 +24,14 @@ const LogIn = () => {
     })
     const jwt = resp.data.challengeJwt
     const challengeClaims = decodeJwt(jwt)
+
+    // now we are generating a zero knowledge proof
+
     const proof = Zk.proofFromSecretAndChallenge(
+      // this never left the client
       userData.password,
+
+      // this came from backend when you gave your email
       challengeClaims,
     )
 

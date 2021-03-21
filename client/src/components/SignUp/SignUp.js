@@ -13,10 +13,14 @@ const SignUp = () => {
     e.preventDefault()
     console.log('submitting')
     console.log(userData)
+
     const verifiedCredential = Zk.verifiableFromSecret(userData.password)
     console.log(verifiedCredential)
+
     const resp = await axios.post('/register', {
+      // credential replaces password
       credential: verifiedCredential,
+
       email: userData.email,
       name: userData.name,
     })
